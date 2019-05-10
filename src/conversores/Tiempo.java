@@ -44,6 +44,7 @@ public class Tiempo {
             case "SEG":
                 return this.valor;
             default:
+				System.out.printf("Unidad de tiempo %s desconocida", unidad);
                 return 0;
         }
     }

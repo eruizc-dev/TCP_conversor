@@ -10,38 +10,35 @@ package conversores;
  * @author Emili
  */
 
-public class Peso
+public class Weight
 {
     public double valor; //En gramos
     
-    public Peso(double d, String s)
+    public Weight(double d, String s)
     {
-        s = s.toUpperCase();
+        s = s.toLowerCase();
         switch (s)
         {
-            case "TON":
-                this.valor = d * 1000000;
-            case "KG":
+            case "kg":
                 this.valor = d * 1000;
-            case "G":
+            case "g":
                 this.valor = d;
-            case "MG":
-                this.valor = d / 1000;
         }
     }
 
-    public double Cambiar(String unidad)
+    public double Modify(String unidad)
     {
-        unidad = unidad.toUpperCase();
+        unidad = unidad.toLowerCase();
 
         switch (unidad)
         {
-            case "G":
+            case "g":
                 return this.valor;
-            case "KG":
+            case "kg":
                 return this.valor / 1000;
             default:
-                System.out.printf("Tipo de unidad de peso %s desconocida", unidad);
+                System.out.printf("Tipo de dato %s desconocido", unidad);
+                // Agregar un raise
                 return 0;
         }
     }
