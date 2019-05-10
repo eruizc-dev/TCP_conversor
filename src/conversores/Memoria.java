@@ -12,39 +12,46 @@ package conversores;
  
 public class Memoria {
     
-    public long valor; // En bit
+    public long valor; // En bytes
     
     public Memoria(long b, String s)
     {
         switch(s)
         {
-			case "GB":
-                this.valor = b * 8589934592;
-			case "MB":
+	case "GB":
+                this.valor = b * 8589934592l;
+                break;
+	case "MB":
                 this.valor = b * 8388608;
-			case "KB":
+                break;
+	case "KB":
                 this.valor = b * 8192;
-			case "B":
+                break;
+	case "B":
                 this.valor = b * 8;
+                break;
             case "b":
                 this.valor = b;
+                break;
         }
     }
     
-    public double cambiar(String unidad)
+    public long Cambiar(String unidad)
     {
         switch(unidad)
         {
             case "GB":
-				return this.valor / 8589934592;
-			case "MB":
-				return this.valor / 8388608;  
-			case "KB":
+		return this.valor / 8589934592l;
+            case "MB":
+		return this.valor / 8388608;  
+            case "KB":
                 return this.valor / 8192;
             case "B":
                 return this.valor / 8;
+            case "b":
+                return this.valor;
             default :
-                System.out.printf("Unidad de memoria %s desconocida",unidad);
+                System.out.printf("Unidad de memoria %s desconocida\n",unidad);
                 return 0;
         }
     }
