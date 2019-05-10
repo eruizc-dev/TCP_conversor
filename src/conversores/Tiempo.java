@@ -10,31 +10,32 @@ package conversores;
  * @author Emili
  */
 public class Tiempo {
-    
+
     private double valor; // En segundos
-    
-    public Tiempo(double num, String s){
-        
+
+    public Tiempo(double num, String s) {
+
         s = s.toUpperCase();
-        switch (s)
-        {
+        switch (s) {
             case "DIA":
                 this.valor = num * 86400;
+                break;
             case "HR":
                 this.valor = num * 3600;
+                break;
             case "MIN":
                 this.valor = num * 60;
+                break;
             case "SEG":
                 this.valor = num;
+                break;
         }
     }
-    
-    public double Cambiar(String unidad)
-    {
+
+    public double Cambiar(String unidad) {
         unidad = unidad.toUpperCase();
 
-        switch (unidad)
-        {
+        switch (unidad) {
             case "DIA":
                 return this.valor / 86400;
             case "HR":
@@ -44,7 +45,7 @@ public class Tiempo {
             case "SEG":
                 return this.valor;
             default:
-				System.out.printf("Unidad de tiempo %s desconocida", unidad);
+                System.out.printf("Unidad de tiempo %s desconocida\n", unidad);
                 return 0;
         }
     }
