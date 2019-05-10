@@ -11,43 +11,47 @@ package conversores;
  */
 public class Memoria {
     
-    public double unidadbyte; //en Megabytes
+    public double unidadbyte; //en bit
     
     public Memoria(double b, String s)
     {
-        s=s.toLowerCase();
+        
         
         switch(s)
         {
-            case "KB":
-                this.unidadbyte = b * 1024;
-            case "B":
-                this.unidadbyte = b * 1048576 ;
-            case "MB":
+            
+            case "b":
                 this.unidadbyte = b ;
+            
+            case "KB":
+                this.unidadbyte = b * 8000;
+            case "B":
+                this.unidadbyte = b * 8 ;
+            case "MB":
+                this.unidadbyte = b * 3227.430348 ;
             case "GB":
-                this.unidadbyte = b / 1024;
+                this.unidadbyte = b * 64824.671;
         }
     }
     
     
     public double cambiar(String unidad)
     {
-        unidad = unidad.toUpperCase();
+        
         
         switch(unidad)
         {
             case "KB":
-                return this.unidadbyte /1024;
+                return this.unidadbyte / 8000;
             
             case "B":
-                return this.unidadbyte /1048576;
+                return this.unidadbyte /8;
             
             case "MB":
-                return this.unidadbyte;
+                return this.unidadbyte / 3227.430348;
             
             case "GB":
-                return this.unidadbyte * 1024;
+                return this.unidadbyte / 64824.671;
                 
             default :
                 
