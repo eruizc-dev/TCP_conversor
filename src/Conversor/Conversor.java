@@ -11,6 +11,12 @@ package Conversor;
  */
 public class Conversor extends javax.swing.JFrame {
 
+    private final String[] unidades_distancia = { "KM", "M", "CM", "MI", "IN" };
+    private final String[] unidades_memoria = { "GB", "MB", "KB", "B", "b" };
+    private final String[] unidades_peso = { "TON", "KG", "G", "MG" };
+    private final String[] unidades_temperatura = { "C", "K", "F" };
+    private final String[] unidades_tiempo = { "DIA", "HR", "MIN", "SEG" };
+    
     /**
      * Creates new form Conversor
      */
@@ -28,68 +34,129 @@ public class Conversor extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        text1_textfield = new javax.swing.JTextField();
+        text2_textfield = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        unidad_combo = new javax.swing.JComboBox<>();
+        unidades1_combo = new javax.swing.JComboBox<>();
+        unidades2_combo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Valor 1");
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 3, 18)); // NOI18N
+        jLabel1.setText("Conversor de valores");
 
-        jLabel2.setText("Valor 2");
+        text1_textfield.setText("jTextField1");
 
-        jTextField1.setText("jTextField1");
+        text2_textfield.setText("jTextField2");
 
-        jTextField2.setText("jTextField2");
+        jButton1.setFont(new java.awt.Font("Comic Sans MS", 2, 14)); // NOI18N
+        jButton1.setText("¡Convertir!");
+        jButton1.setMaximumSize(new java.awt.Dimension(100, 29));
+        jButton1.setMinimumSize(new java.awt.Dimension(100, 29));
+        jButton1.setPreferredSize(new java.awt.Dimension(100, 29));
 
-        jButton1.setText("Convertir");
+        unidad_combo.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
+        unidad_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Distancia", "Memoria", "Peso", "Temperatura", "Tiempo" }));
+        unidad_combo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                unidad_comboActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        unidades1_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "KM", "M", "CM", "MI", "IN" }));
+        unidades1_combo.setMaximumSize(new java.awt.Dimension(60, 20));
+        unidades1_combo.setPreferredSize(new java.awt.Dimension(60, 20));
+
+        unidades2_combo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "KM", "M", "CM", "MI", "IN" }));
+        unidades2_combo.setMaximumSize(new java.awt.Dimension(60, 20));
+        unidades2_combo.setPreferredSize(new java.awt.Dimension(60, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(64, 64, 64))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(text1_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(86, 86, 86)
+                                .addComponent(unidades1_combo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(unidad_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(text2_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(unidades2_combo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jButton1)
-                .addGap(34, 34, 34)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                    .addComponent(unidad_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text2_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text1_textfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(unidades2_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(unidades1_combo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void unidad_comboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unidad_comboActionPerformed
+        // TODO add your handling code here:
+        unidades1_combo.removeAllItems();
+        unidades2_combo.removeAllItems();
+        
+        if (unidad_combo.getSelectedItem().equals("Distancia"))
+        {
+            for (String unidades_distancia1 : unidades_distancia) {
+                unidades1_combo.addItem(unidades_distancia1);
+                unidades2_combo.addItem(unidades_distancia1);
+            }
+        }
+        else if (unidad_combo.getSelectedItem().equals("Memoria"))
+        {
+            for (String unidades_memoria1 : unidades_memoria) {
+                unidades1_combo.addItem(unidades_memoria1);
+                unidades2_combo.addItem(unidades_memoria1);
+            }
+        }
+        else if (unidad_combo.getSelectedItem().equals("Peso"))
+        {
+            for (String unidades_pesol : unidades_peso) {
+                unidades1_combo.addItem(unidades_pesol);
+                unidades2_combo.addItem(unidades_pesol);
+            }
+        }
+        else if (unidad_combo.getSelectedItem().equals("Temperatura"))
+        {
+            for (String unidades_temperatural : unidades_temperatura) {
+                unidades1_combo.addItem(unidades_temperatural);
+                unidades2_combo.addItem(unidades_temperatural);
+            }
+        }
+        else if (unidad_combo.getSelectedItem().equals("Tiempo"))
+        {
+            for (String unidades_tiempo1 : unidades_tiempo) {
+                unidades1_combo.addItem(unidades_tiempo1);
+                unidades2_combo.addItem(unidades_tiempo1);
+            }
+        }
+    }//GEN-LAST:event_unidad_comboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,10 +195,11 @@ public class Conversor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField text1_textfield;
+    private javax.swing.JTextField text2_textfield;
+    private javax.swing.JComboBox<String> unidad_combo;
+    private javax.swing.JComboBox<String> unidades1_combo;
+    private javax.swing.JComboBox<String> unidades2_combo;
     // End of variables declaration//GEN-END:variables
 }
