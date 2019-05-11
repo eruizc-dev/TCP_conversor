@@ -30,7 +30,7 @@ public class Distancia {
                 this.valor = m * 1609.344;
                 break;
             case "IN":
-                this.valor = m * 39.37;
+                this.valor = m / 39.37;
                 break;
         }
     }

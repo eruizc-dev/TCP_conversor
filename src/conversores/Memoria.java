@@ -12,7 +12,7 @@ package conversores;
  
 public class Memoria {
     
-    public long valor; // En bytes
+    public long valor; // En bits
     
     public Memoria(long b, String s)
     {

@@ -99,6 +99,7 @@
       </Properties>
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="text1_textfieldFocusGained"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="text1_textfieldKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="text2_textfield">
@@ -111,6 +112,7 @@
       </Properties>
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="text2_textfieldFocusGained"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="text2_textfieldKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="convertir_but">

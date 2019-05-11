@@ -10,6 +10,7 @@ import conversores.Memoria;
 import conversores.Peso;
 import conversores.Temperatura;
 import conversores.Tiempo;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -24,12 +25,100 @@ public class Conversor extends javax.swing.JFrame {
     private final String[] unidades_tiempo = { "DIA", "HR", "MIN", "SEG" };
     
     private boolean focus_1 = true;
+    // True: 1 a 2
+    // False: 2 a 1
     
     /**
      * Creates new form Conversor
      */
     public Conversor() {
         initComponents();
+    }
+    
+    private void Convertir()
+    {
+        text1_textfield.setText(text1_textfield.getText().replaceAll((","), "."));
+        text2_textfield.setText(text2_textfield.getText().replaceAll((","), "."));
+
+        text1_textfield.setText(text1_textfield.getText().replaceAll(("[^0-9.]"), ""));
+        text2_textfield.setText(text2_textfield.getText().replaceAll(("[^0-9.]"), ""));
+        
+        if (text1_textfield.getText().equals("") && focus_1)
+            return;
+
+        if (text2_textfield.getText().equals("") && !focus_1)
+            return;
+        
+        if (unidad_combo.getSelectedItem().equals("Distancia"))
+        {
+            Distancia num;
+            if (focus_1)
+            {
+                num = new Distancia(Double.parseDouble(text1_textfield.getText()), (String) unidades1_combo.getSelectedItem());
+                text2_textfield.setText(String.valueOf(num.Cambiar((String) unidades2_combo.getSelectedItem())));
+            }
+            else
+            {
+                num = new Distancia(Double.parseDouble(text2_textfield.getText()), (String) unidades2_combo.getSelectedItem());
+                text1_textfield.setText(String.valueOf(num.Cambiar((String) unidades1_combo.getSelectedItem())));
+            }
+        }
+        else if (unidad_combo.getSelectedItem().equals("Memoria"))
+        {
+            Memoria num;
+            if (focus_1)
+            {
+                num = new Memoria(Long.parseLong(text1_textfield.getText()), (String) unidades1_combo.getSelectedItem());
+                text2_textfield.setText(String.valueOf(num.Cambiar((String) unidades2_combo.getSelectedItem())));
+            }
+            else
+            {
+                num = new Memoria(Long.parseLong(text2_textfield.getText()), (String) unidades2_combo.getSelectedItem());
+                text1_textfield.setText(String.valueOf(num.Cambiar((String) unidades1_combo.getSelectedItem())));
+            }
+        }
+        else if (unidad_combo.getSelectedItem().equals("Peso"))
+        {
+            Peso num;
+            if (focus_1)
+            {
+                num = new Peso(Double.parseDouble(text1_textfield.getText()), (String) unidades1_combo.getSelectedItem());
+                text2_textfield.setText(String.valueOf(num.Cambiar((String) unidades2_combo.getSelectedItem())));
+            }
+            else
+            {
+                num = new Peso(Double.parseDouble(text2_textfield.getText()), (String) unidades2_combo.getSelectedItem());
+                text1_textfield.setText(String.valueOf(num.Cambiar((String) unidades1_combo.getSelectedItem())));
+            }
+        }
+        else if (unidad_combo.getSelectedItem().equals("Temperatura"))
+        {
+            Temperatura num;
+            if (focus_1)
+            {
+                num = new Temperatura(Double.parseDouble(text1_textfield.getText()), (String) unidades1_combo.getSelectedItem());
+                text2_textfield.setText(String.valueOf(num.Cambiar((String) unidades2_combo.getSelectedItem())));
+            }
+            else
+            {
+                num = new Temperatura(Double.parseDouble(text2_textfield.getText()), (String) unidades2_combo.getSelectedItem());
+                text1_textfield.setText(String.valueOf(num.Cambiar((String) unidades1_combo.getSelectedItem())));
+            }
+        }
+        else if (unidad_combo.getSelectedItem().equals("Tiempo"))
+        {
+            Tiempo num;
+            if (focus_1)
+            {
+                num = new Tiempo(Double.parseDouble(text1_textfield.getText()), (String) unidades1_combo.getSelectedItem());
+                text2_textfield.setText(String.valueOf(num.Cambiar((String) unidades2_combo.getSelectedItem())));
+            }
+            else
+            {
+                num = new Tiempo(Double.parseDouble(text2_textfield.getText()), (String) unidades2_combo.getSelectedItem());
+                text1_textfield.setText(String.valueOf(num.Cambiar((String) unidades1_combo.getSelectedItem())));
+            }
+        }
     }
 
     /**
@@ -63,6 +152,11 @@ public class Conversor extends javax.swing.JFrame {
                 text1_textfieldFocusGained(evt);
             }
         });
+        text1_textfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                text1_textfieldKeyReleased(evt);
+            }
+        });
 
         text2_textfield.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
         text2_textfield.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -70,6 +164,11 @@ public class Conversor extends javax.swing.JFrame {
         text2_textfield.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 text2_textfieldFocusGained(evt);
+            }
+        });
+        text2_textfield.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                text2_textfieldKeyReleased(evt);
             }
         });
 
@@ -192,81 +291,7 @@ public class Conversor extends javax.swing.JFrame {
 
     private void convertir_butMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_convertir_butMouseClicked
         // TODO add your handling code here:
-        text1_textfield.setText(text1_textfield.getText().replaceAll((","), "."));
-        text2_textfield.setText(text2_textfield.getText().replaceAll((","), "."));
-        text1_textfield.setText(text1_textfield.getText().replaceAll(("[^0-9.]"), ""));
-        text2_textfield.setText(text2_textfield.getText().replaceAll(("[^0-9.]"), ""));
-        
-        if (unidad_combo.getSelectedItem().equals("Distancia"))
-        {
-            Distancia num;
-            if (focus_1)
-            {
-                num = new Distancia(Double.parseDouble(text1_textfield.getText()), (String) unidades1_combo.getSelectedItem());
-                text2_textfield.setText(String.valueOf(num.Cambiar((String) unidades2_combo.getSelectedItem())));
-            }
-            else
-            {
-                num = new Distancia(Double.parseDouble(text2_textfield.getText()), (String) unidades2_combo.getSelectedItem());
-                text1_textfield.setText(String.valueOf(num.Cambiar((String) unidades1_combo.getSelectedItem())));
-            }
-        }
-        else if (unidad_combo.getSelectedItem().equals("Memoria"))
-        {
-            Memoria num;
-            if (focus_1)
-            {
-                num = new Memoria(Long.parseLong(text1_textfield.getText()), (String) unidades1_combo.getSelectedItem());
-                text2_textfield.setText(String.valueOf(num.Cambiar((String) unidades2_combo.getSelectedItem())));
-            }
-            else
-            {
-                num = new Memoria(Long.parseLong(text2_textfield.getText()), (String) unidades2_combo.getSelectedItem());
-                text1_textfield.setText(String.valueOf(num.Cambiar((String) unidades1_combo.getSelectedItem())));
-            }
-        }
-        else if (unidad_combo.getSelectedItem().equals("Peso"))
-        {
-            Peso num;
-            if (focus_1)
-            {
-                num = new Peso(Double.parseDouble(text1_textfield.getText()), (String) unidades1_combo.getSelectedItem());
-                text2_textfield.setText(String.valueOf(num.Cambiar((String) unidades2_combo.getSelectedItem())));
-            }
-            else
-            {
-                num = new Peso(Double.parseDouble(text2_textfield.getText()), (String) unidades2_combo.getSelectedItem());
-                text1_textfield.setText(String.valueOf(num.Cambiar((String) unidades1_combo.getSelectedItem())));
-            }
-        }
-        else if (unidad_combo.getSelectedItem().equals("Temperatura"))
-        {
-            Temperatura num;
-            if (focus_1)
-            {
-                num = new Temperatura(Double.parseDouble(text1_textfield.getText()), (String) unidades1_combo.getSelectedItem());
-                text2_textfield.setText(String.valueOf(num.Cambiar((String) unidades2_combo.getSelectedItem())));
-            }
-            else
-            {
-                num = new Temperatura(Double.parseDouble(text2_textfield.getText()), (String) unidades2_combo.getSelectedItem());
-                text1_textfield.setText(String.valueOf(num.Cambiar((String) unidades1_combo.getSelectedItem())));
-            }
-        }
-        else if (unidad_combo.getSelectedItem().equals("Tiempo"))
-        {
-            Tiempo num;
-            if (focus_1)
-            {
-                num = new Tiempo(Double.parseDouble(text1_textfield.getText()), (String) unidades1_combo.getSelectedItem());
-                text2_textfield.setText(String.valueOf(num.Cambiar((String) unidades2_combo.getSelectedItem())));
-            }
-            else
-            {
-                num = new Tiempo(Double.parseDouble(text2_textfield.getText()), (String) unidades2_combo.getSelectedItem());
-                text1_textfield.setText(String.valueOf(num.Cambiar((String) unidades1_combo.getSelectedItem())));
-            }
-        }
+        Convertir();
     }//GEN-LAST:event_convertir_butMouseClicked
 
     private void text1_textfieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_text1_textfieldFocusGained
@@ -278,6 +303,18 @@ public class Conversor extends javax.swing.JFrame {
         // TODO add your handling code here:
         focus_1 = false;
     }//GEN-LAST:event_text2_textfieldFocusGained
+
+    private void text1_textfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_text1_textfieldKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            Convertir();
+    }//GEN-LAST:event_text1_textfieldKeyReleased
+
+    private void text2_textfieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_text2_textfieldKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            Convertir();
+    }//GEN-LAST:event_text2_textfieldKeyReleased
 
     /**
      * @param args the command line arguments
@@ -307,10 +344,8 @@ public class Conversor extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Conversor().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Conversor().setVisible(true);
         });
     }
 
@@ -323,4 +358,5 @@ public class Conversor extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> unidades1_combo;
     private javax.swing.JComboBox<String> unidades2_combo;
     // End of variables declaration//GEN-END:variables
+
 }
